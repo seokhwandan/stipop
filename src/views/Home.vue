@@ -9,14 +9,10 @@
     <div class="section" id="section2">
       <Section2/>
     </div>
-    <div class="section" id="section3">
-      <Section3/>
-    </div>
     <div class="buttons">
       <button class="btn" id="btn1" @click="move1"></button>
       <button class="btn" id="btn2" @click="move2"></button>
       <button class="btn" id="btn3" @click="move3"></button>
-      <button class="btn" id="btn4" @click="move4"></button>
     </div>
   </div>
 </template>
@@ -26,7 +22,6 @@ import { reactive, onMounted } from 'vue'
 import Landing from '@/components/Landing.vue'
 import Section1 from '@/components/Section1.vue'
 import Section2 from '@/components/Section2.vue'
-import Section3 from '@/components/Section3.vue'
 
 export default {
   name: 'Home',
@@ -34,7 +29,6 @@ export default {
     Landing,
     Section1,
     Section2,
-    Section3
   },
   setup() {
     const state = reactive ({
@@ -79,18 +73,6 @@ export default {
         }
       }
     }
-    const move4 = () => {
-      window.scrollTo({ top: state.sec3top, behavior: 'smooth' })
-      for (var i = 0; i < btns.length; i++) {
-        if (i == 3) {
-          btns[i].style.transform = 'scale(1.5)'
-          btns[i].style.boxShadow = '0 0 5px #fe3792'
-        } else {
-          btns[i].style.transform = 'scale(1)'
-          btns[i].style.boxShadow = 'unset'
-        }
-      }
-    }
     window.addEventListener('wheel', () => {
       for (var i = 0; i < btns.length; i++) {
         if (window.pageYOffset < state.sec1top * 0.8) {
@@ -109,7 +91,7 @@ export default {
             btns[i].style.transform = 'scale(1)'
             btns[i].style.boxShadow = 'unset'
           }
-        } else if (window.pageYOffset < state.sec3top * 0.8) {
+        } else if (window.pageYOffset > state.sec2top * 0.8) {
           if (i == 2) {
             btns[i].style.transform = 'scale(1.5)'
             btns[i].style.boxShadow = '0 0 5px #fe3792'
@@ -117,28 +99,19 @@ export default {
             btns[i].style.transform = 'scale(1)'
             btns[i].style.boxShadow = 'unset'
           }
-        } else if (window.pageYOffset > state.sec3top * 0.8) {
-          if (i == 3) {
-            btns[i].style.transform = 'scale(1.5)'
-            btns[i].style.boxShadow = '0 0 5px #fe3792'
-          } else {
-            btns[i].style.transform = 'scale(1)'
-            btns[i].style.boxShadow = 'unset'
-          }
-        }
+        } 
       }
     })
     onMounted(() => {
       state.sec1top = document.getElementById('section1').offsetTop
       state.sec2top = document.getElementById('section2').offsetTop
-      state.sec3top = document.getElementById('section3').offsetTop
       window.scrollTo({ top: 0, behavior: 'smooth' })
       const btn1 = document.getElementById('btn1')
       btn1.style.transform = 'scale(1.5)'
       btn1.style.boxShadow = '0 0 5px #fe3792'
     })
 
-    return { move1, move2, move3, move4 }
+    return { move1, move2, move3 }
   },
 }
 </script>

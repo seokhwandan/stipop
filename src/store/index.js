@@ -45,13 +45,6 @@ export default createStore({
         commit('PACKAGE', data.body.package)
       })
     },
-    search (context, keyword) {
-      return axios
-      .get(`${STIPOP_API}/v1/search`, {
-        params: { userId: "32df0190-eea0-4edb-915a-bd6306308b79", p: keyword, limit: 35 },
-        headers: { apikey: "0e65fb628feac140d394edadaefe1e25" }
-      })
-    }
   },
   getters: {
     getStickers (state) {

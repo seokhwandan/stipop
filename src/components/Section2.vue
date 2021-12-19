@@ -1,5 +1,5 @@
 <template>
-  <div class="section-box">
+  <div class="section2-box">
     <div class="trend">
       <h1>최신 스티커</h1>
       <span>스티커를 클릭하여 자세히 볼 수 있습니다.</span>
