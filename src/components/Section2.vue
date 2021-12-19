@@ -54,7 +54,6 @@ export default {
       store.dispatch('newStickerPacks')
       .then(({ data }) => {
         state.packages = data.body.packageList
-        console.log(state.packages)
       })
     })
     return { state, showSticker, closeSticker }

@@ -24,12 +24,12 @@ export default {
       searchResult: []
     })
     const search = () => {
-      console.log(state.keyword)
-      store.dispatch('search', state.keyword)
-      .then(({ data }) => {
-        state.searchResult = data.body.stickerList
-        console.log(state.searchResult)
-      })
+      if(state.keyword) {
+        store.dispatch('search', state.keyword)
+        .then(({ data }) => {
+          state.searchResult = data.body.stickerList
+        })
+      }
     }
     return { state, search }
   },

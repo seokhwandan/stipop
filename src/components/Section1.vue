@@ -54,7 +54,6 @@ export default {
       store.dispatch('trendingStickerPacks')
       .then(({ data }) => {
         state.packages = data.body.packageList
-        console.log(state.packages)
       })
     })
 
